@@ -1,1 +1,30 @@
+name: Get dependencies
+
+on: push
+
+jobs:
+  super-lint:
+    name: Generate python dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependecies
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: requirements > requirements.txt
+
+      - name: Commit files # transfer the new files back into the repository
+        run: |
+          git config --global user.name "Terraform"
+          git add ./requirements.txt
+          git commit -m "Update repository with new requirements."
+   
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force_with_lease: true
 
