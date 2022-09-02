@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  super-lint:
+  get-dependencies:
     name: Generate python dependencies
     runs-on: ubuntu-latest
 
