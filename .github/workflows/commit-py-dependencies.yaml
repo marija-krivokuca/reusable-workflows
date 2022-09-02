@@ -1,6 +1,7 @@
 name: Get dependencies
 
-on: push
+on:
+  workflow_call:
 
 jobs:
   super-lint:
