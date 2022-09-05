@@ -19,6 +19,7 @@ jobs:
 
       - name: Commit files # transfer the new files back into the repository
         run: |
+          rm requirements.txt
           git config --global user.name "Terraform"
           git add ./requirements.txt
           git diff --name-only
