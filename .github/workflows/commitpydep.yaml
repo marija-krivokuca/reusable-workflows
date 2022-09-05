@@ -12,6 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Delete existing requirements.txt
+        run: |
+          rm requirements.txt
+
       - name: Install dependecies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
@@ -19,7 +23,6 @@ jobs:
 
       - name: Commit files # transfer the new files back into the repository
         run: |
-          rm requirements.txt
           git config --global user.name "Terraform"
           git add ./requirements.txt
           git diff --name-only
