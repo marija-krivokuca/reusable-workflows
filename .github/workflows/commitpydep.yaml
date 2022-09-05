@@ -43,7 +43,7 @@ jobs:
         run: |
           git config --global user.name "Terraform"
           git add requirements.txt
-          git commit -m "Update repository with new requirements." requirements.txt
+          git commit -m "Update repository with new requirements."
    
       - name: Push changes # push the output folder to your repo
         uses: ad-m/github-push-action@master
