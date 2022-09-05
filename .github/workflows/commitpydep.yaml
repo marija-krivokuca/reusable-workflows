@@ -32,10 +32,15 @@ jobs:
             rm Pipfile.lock
           fi
 
+      - name: Get Pipfile.lock
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: lock
+          
       - name: Install dependecies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          command: lock | pipenv requirements > requirements.txt
+          command: requirements > requirements.txt
 
       - name: Commit files # transfer the new files back into the repository
         run: |
