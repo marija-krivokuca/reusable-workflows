@@ -20,29 +20,28 @@ jobs:
             echo "Pipfile does not exist! Please commit Pipfile."
             exit 0
           fi
-          FILE=./Pipfile.lock
-          if [[! -f "$FILE"]] 
-          then
-            echo "Pipfile.lock does not exist! Please commit Pipfile.lock"
-            exit 0
-          fi
 
-      - name: Delete existing requirements.txt
+      - name: Delete existing files
         run: |
           FILE=./requirements.txt
           if test -f "$FILE"; then
             rm requirements.txt
           fi
+          FILE=./Pipfile.lock
+          if test -f "$FILE"; then
+            rm Pipfile.lock
+          fi
 
       - name: Install dependecies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          command: requirements > requirements.txt
+          command: lock | pipenv requirements > requirements.txt
 
       - name: Commit files # transfer the new files back into the repository
         run: |
           git config --global user.name "Terraform"
           git add requirements.txt
+          git status
           git commit -m "Update repository with new requirements."
    
       - name: Push changes # push the output folder to your repo
