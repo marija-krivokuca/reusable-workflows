@@ -12,6 +12,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Check if Pipfile & Pipfile.lock exist
+        run: |
+          FILE=./Pipfile
+          if [[! -f "$FILE"]] 
+          then
+            echo "Pipfile does not exist! Please commit Pipfile."
+            exit 0
+          fi
+          FILE=./Pipfile.lock
+          if [[! -f "$FILE"]] 
+          then
+            echo "Pipfile.lock does not exist! Please commit Pipfile.lock"
+            exit 0
+          fi
+
       - name: Delete existing requirements.txt
         run: |
           FILE=./requirements.txt
