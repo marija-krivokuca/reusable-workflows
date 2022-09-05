@@ -42,9 +42,8 @@ jobs:
       - name: Commit files # transfer the new files back into the repository
         run: |
           git config --global user.name "Terraform"
-          git add ./requirements.txt
-          git diff --name-only
-          git commit -m "Update repository with new requirements." ./requirements.txt
+          git add requirements.txt
+          git commit -m "Update repository with new requirements." requirements.txt
    
       - name: Push changes # push the output folder to your repo
         uses: ad-m/github-push-action@master
