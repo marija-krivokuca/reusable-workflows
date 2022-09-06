@@ -14,11 +14,6 @@ jobs:
 
       - name: Check if Pipfile exist
         run: |
-          if [ ! -f ./Pipfile ]
-          then
-            echo "Pipfile does not exist! Please commit Pipfile."
-            exit 1
-          fi
           if ! test Pipfile.lock
           then
             echo "Pipfile does not exist! Please commit Pipfile.lock."
@@ -49,14 +44,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force_with_lease: true
-
-      - name: Delete Pipfile & Pipfile.lock
-        run: |
-          FILE=./Pipfile
-          if test -f "$FILE"; then
-            rm Pipfile
-          fi
-          FILE=./Pipfile.lock
-          if test -f "$FILE"; then
-            rm Pipfile.lock
-          fi
