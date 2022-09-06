@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check if Pipfile & Pipfile.lock exist
+      - name: Check if Pipfile exist
         run: |
           FILE=./Pipfile
           if [[! -f "$FILE"]] 
@@ -20,27 +20,18 @@ jobs:
             echo "Pipfile does not exist! Please commit Pipfile."
             exit 0
           fi
+          FILE=./Pipfile.lock
+          if [[! -f "$FILE"]] 
+          then
+            echo "Pipfile does not exist! Please commit Pipfile.lock."
+            exit 0
+          fi
 
-      - name: Delete existing files
+      - name: Delete existing file
         run: |
           FILE=./requirements.txt
           if test -f "$FILE"; then
             rm requirements.txt
-          fi
-          FILE=./Pipfile.lock
-          if test -f "$FILE"; then
-            rm Pipfile.lock
-          fi
-
-      - name: Install dependecies
-        uses: VaultVulp/action-pipenv@v2.0.1
-        with:
-          command: install -d # Install all dependencies, including development ones
-
-      - name: Get Pipfile.lock
-        uses: VaultVulp/action-pipenv@v2.0.1
-        with:
-          command: lock
 
       - name: Get requirements.txt
         uses: VaultVulp/action-pipenv@v2.0.1
