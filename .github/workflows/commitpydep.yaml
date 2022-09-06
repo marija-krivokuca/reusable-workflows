@@ -12,9 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check if Pipfile exist
+      - name: Check if Pipfile.lock exist
         run: |
-          if ! test Pipfile.lock
+          if ! test ./Pipfile.lock
           then
             echo "Pipfile does not exist! Please commit Pipfile.lock."
             exit 1
