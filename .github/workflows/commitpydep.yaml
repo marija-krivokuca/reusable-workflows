@@ -14,14 +14,12 @@ jobs:
 
       - name: Check if Pipfile exist
         run: |
-          FILE=./Pipfile
-          if [! -f "$FILE"] 
+          if ! test Pipfile
           then
             echo "Pipfile does not exist! Please commit Pipfile."
             exit 0
           fi
-          FILE=./Pipfile.lock
-          if [! -f "$FILE"]
+          if ! test Pipfile.lock
           then
             echo "Pipfile does not exist! Please commit Pipfile.lock."
             exit 0
