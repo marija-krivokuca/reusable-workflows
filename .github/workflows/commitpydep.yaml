@@ -32,6 +32,7 @@ jobs:
           FILE=./requirements.txt
           if test -f "$FILE"; then
             rm requirements.txt
+          fi
 
       - name: Get requirements.txt
         uses: VaultVulp/action-pipenv@v2.0.1
