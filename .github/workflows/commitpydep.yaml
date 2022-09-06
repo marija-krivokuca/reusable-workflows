@@ -17,12 +17,12 @@ jobs:
           if [ ! -f ./Pipfile ]
           then
             echo "Pipfile does not exist! Please commit Pipfile."
-            exit 0
+            exit 1
           fi
           if ! test Pipfile.lock
           then
             echo "Pipfile does not exist! Please commit Pipfile.lock."
-            exit 0
+            exit 1
           fi
 
       - name: Delete existing file
