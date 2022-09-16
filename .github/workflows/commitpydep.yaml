@@ -26,7 +26,7 @@ jobs:
           if test -f "$FILE"; then
             rm requirements.txt
           fi
-
+#commit after deletion
       - name: Get requirements.txt
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
